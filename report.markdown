@@ -93,9 +93,17 @@ You can find the mid-term presentation about hierarchical dirichlet process [her
 
  This is the result:
 
+![Figure 1](https://github.com/bobchennan/VAE_NBP/raw/master/vis1.png "Connection between maximum number of components and mutual information")
+
  #### Relation between latent space dimension and mutual information
 
  ### Sample analysis
+ Samples from variational auto-encoder with dirichlet process mixture model prior:
+ 
+![Figure 1](https://github.com/bobchennan/VAE_NBP/raw/master/gen_dp.png "Samples from variational auto-encoder with dirichlet process mixture model prior")
 
+Samples from variational auto-encoder with non-informative prior:
+
+![Figure 1](https://github.com/bobchennan/VAE_NBP/raw/master/gen_normal.png "Samples from variational auto-encoder with non-informative prior")
  ## Future Work
  ------
