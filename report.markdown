@@ -1,6 +1,6 @@
 # Non-parametric Bayesian Prior for Variational Auto-encoder
 
-This is the final project for course Advanced Topics in Bayesian Statistics.
+This is the final project for course *Advanced Topics in Bayesian Statistics*.
 You can find the mid-term presentation about hierarchical dirichlet process [here](http://myemacs.com/2017/04/06/Hierarchical-Dirichlet-Process/).
 
  The whole idea for this work comes from this paper by Prof. Eric Xing's team:
@@ -55,7 +55,7 @@ You can find the mid-term presentation about hierarchical dirichlet process [her
  I chose diagonal covariance in this experiment.
 
  The whole training process repeats two steps:
- * Fixed the encoder, sampled $z$ from the training data and update the prior
+ * Fixed the encoder, sampled <img src="https://latex.codecogs.com/gif.latex?$z$" title="$z$" /> from the training data and update the prior
  * Fixed the prior and update the encoder and decoder as the standard variational auto-encoder. The KL-divergence is calculated between the posterior and the predicted cluster (which is still a normal distribution).
 
  And the whole system is trained with 11 iterations.
@@ -75,7 +75,7 @@ You can find the mid-term presentation about hierarchical dirichlet process [her
   |-------------|---|---|---|---|---|---|---|---|---|
   |Cluster labels | 1 | 1 | 2 | 3 | 3 | 4 | 4 | 5 | 5 |
 
- How to estimate the wellness of this information?
+ How to estimate the clustering result?
  Fortunately as the "purity" suggests we use the [mutual information](https://en.wikipedia.org/wiki/Mutual_information).
 
  For the example above, the mutual information is 1.0608569471580218.
@@ -98,12 +98,18 @@ You can find the mid-term presentation about hierarchical dirichlet process [her
  #### Relation between latent space dimension and mutual information
 
  ### Sample analysis
+ In order to sample from the model, the latent vector is sampled from the prior (from either non-informative prior or dirichlet process mixture model).
+ Then the decoder will transform the latent vector to the real image.
+
  Samples from variational auto-encoder with dirichlet process mixture model prior:
- 
+
 ![Figure 1](https://github.com/bobchennan/VAE_NBP/raw/master/gen_dp.png "Samples from variational auto-encoder with dirichlet process mixture model prior")
 
 Samples from variational auto-encoder with non-informative prior:
 
-![Figure 1](https://github.com/bobchennan/VAE_NBP/raw/master/gen_normal.png "Samples from variational auto-encoder with non-informative prior")
+![Figure 2](https://github.com/bobchennan/VAE_NBP/raw/master/gen_normal.png "Samples from variational auto-encoder with non-informative prior")
+
+As you can see, samples from the NBP prior is much better than non-informative prior as expect.
+
  ## Future Work
  ------
