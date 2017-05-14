@@ -45,8 +45,8 @@ You can find the mid-term presentation about hierarchical dirichlet process [her
 
  Since we have ground truth (10 classes: {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}), I did two class of experiments:
 
-  * How well is the clustering? For example, how purity is each cluster? Does one cluster includes samples from multiple class?
-  * How well is the reconstruction? Further more, can we sample from this model?
+  * As the indefinite mixture model, how well is the clustering result? For example, how pure is each cluster? Does one cluster includes samples from multiple class?
+  * As the auto-encoder model, how well is the reconstruction result? Further more, can we sample from this model?
 
  ### Experiment Details
  Variational inference is used for dirichlet process.
