@@ -56,7 +56,7 @@ You can find the mid-term presentation about hierarchical dirichlet process [her
 
  The whole training process repeats two steps:
  * Fixed the encoder, sampled <img src="https://latex.codecogs.com/gif.latex?$z$" title="$z$" /> from the training data and update the prior
- * Fixed the prior and update the encoder and decoder as the standard variational auto-encoder. The KL-divergence is calculated between the posterior and the predicted cluster (which is still a normal distribution).
+ * Fixed the prior and update the encoder and decoder as the standard variational auto-encoder. The KL-divergence between the posterior and the predicted cluster (which is still a normal distribution) is calculated as well as the likelihood.
 
  And the whole system is trained with 11 iterations.
 
@@ -78,14 +78,24 @@ You can find the mid-term presentation about hierarchical dirichlet process [her
  How to estimate the clustering result?
  Fortunately as the "purity" suggests we use the [mutual information](https://en.wikipedia.org/wiki/Mutual_information).
 
- For the example above, the mutual information is 1.0608569471580218.
+ For the example above, the mutual information is about 1.06.
  Because the mutual information is between 0 (independent) and positive infinity, it is not clear whether is good or not.
  Some good alternatives include [normalized mutual information](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.normalized_mutual_info_score.html#sklearn.metrics.normalized_mutual_info_score) which is between 0 and 1.
- For this example the normalized mutual information is 0.81912390687071579, fairly good.
+ For this example the normalized mutual information is approximately 0.82, fairly good.
+
+ #### Relation between latent space dimension and mutual information
+
+ In this experiment the maximum number of dimension is fixed to 100.
+
+ The hidden dimension is varied from 5 to 50.
+
+ ![Figure 1](https://github.com/bobchennan/VAE_NBP/raw/master/vis2.png "Connection between latent space dimension and mutual information")
+
+ It is quite clear that 20 is the best configuration which means either too small or too large latent space is not good.
 
  #### Relation between maximum number of components and mutual information
 
- One drawback of variational inference implementation for dirichlet process is that the maximal number of components need to be assigned manually.
+ One drawback of variational inference implementation for dirichlet process is that the maximal number of components need to be assigned manually for truncation.
  In the [original paper](http://www.cs.columbia.edu/~blei/papers/BleiJordan2004.pdf) they truncated the variational distribution instead of using the whole stick-breaking representation.
 
  So one interesting question is that how the maximum number of components influence the result.
@@ -93,11 +103,9 @@ You can find the mid-term presentation about hierarchical dirichlet process [her
 
  This is the result:
 
-![Figure 1](https://github.com/bobchennan/VAE_NBP/raw/master/vis1.png "Connection between maximum number of components and mutual information")
+![Figure 2](https://github.com/bobchennan/VAE_NBP/raw/master/vis1.png "Connection between maximum number of components and mutual information")
 
- #### Relation between latent space dimension and mutual information
-
- ![Figure 2](https://github.com/bobchennan/VAE_NBP/raw/master/vis2.png "Connection between latent space dimension and mutual information")
+As you can see, when this number is larger than 300, there is not much improvement.
 
  ### Sample analysis
  In order to sample from the model, the latent vector is sampled from the prior (from either non-informative prior or dirichlet process mixture model).
@@ -111,7 +119,13 @@ Samples from variational auto-encoder with non-informative prior:
 
 ![Figure 4](https://github.com/bobchennan/VAE_NBP/raw/master/gen_normal.png "Samples from variational auto-encoder with non-informative prior")
 
-As you can see, samples from the NBP prior is much better than non-informative prior as expect.
+As you can see, samples from the NBP prior is much better than non-informative prior as expect. It is well known that variational auto-encoder sampling suffers blurry problem. Dirichlet process mixture model cannot fully solve this problem but the result is much better.
 
  ## Future Work
  ------
+ While I am working on this project I realized dirichlet process may be not a good choice in the mutual information perspective. It is well known that in the dirichlet process, richer mixture get richer. So it tends to have some large mixtures which contains samples from all classes. This is not good for both mutual information and sampling in reality.
+
+ For alternatives, maybe the repulsive models are a good choice. Depends on the base measure, mixtures in my experiments are too closed to each other. That is the reason that repulsive models may be a good choice.
+
+ ## code
+ The implementation can be found in my [github repo](https://github.com/bobchennan/VAE_NBP).
