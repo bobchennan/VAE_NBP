@@ -97,17 +97,19 @@ You can find the mid-term presentation about hierarchical dirichlet process [her
 
  #### Relation between latent space dimension and mutual information
 
+ ![Figure 2](https://github.com/bobchennan/VAE_NBP/raw/master/vis2.png "Connection between latent space dimension and mutual information")
+
  ### Sample analysis
  In order to sample from the model, the latent vector is sampled from the prior (from either non-informative prior or dirichlet process mixture model).
  Then the decoder will transform the latent vector to the real image.
 
  Samples from variational auto-encoder with dirichlet process mixture model prior:
 
-![Figure 1](https://github.com/bobchennan/VAE_NBP/raw/master/gen_dp.png "Samples from variational auto-encoder with dirichlet process mixture model prior")
+![Figure 3](https://github.com/bobchennan/VAE_NBP/raw/master/gen_dp.png "Samples from variational auto-encoder with dirichlet process mixture model prior")
 
 Samples from variational auto-encoder with non-informative prior:
 
-![Figure 2](https://github.com/bobchennan/VAE_NBP/raw/master/gen_normal.png "Samples from variational auto-encoder with non-informative prior")
+![Figure 4](https://github.com/bobchennan/VAE_NBP/raw/master/gen_normal.png "Samples from variational auto-encoder with non-informative prior")
 
 As you can see, samples from the NBP prior is much better than non-informative prior as expect.
 
