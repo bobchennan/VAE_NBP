@@ -182,7 +182,7 @@ def test(epoch, prior):
     test_loss /= len(test_loader.dataset)
     print('====> Test set loss: {:.4f}'.format(test_loss))
 
-prior = BayesianGaussianMixture(n_components=args.comp, covariance_type='diag', init_params='random')
+prior = BayesianGaussianMixture(n_components=args.comp, covariance_type='diag')
 for epoch in range(1, args.epochs + 1):
     prior=train(epoch, prior)
     test(epoch,prior)
