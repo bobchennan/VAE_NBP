@@ -3,7 +3,7 @@ Variational Auto-encoder with Non-parametric Bayesian Prior
 
 Instruction:
     
-    use vae.py to train the model.
+    use vae_*.py to train the model.
 
     For test and analysis you can use DPVAE.r. 
 
