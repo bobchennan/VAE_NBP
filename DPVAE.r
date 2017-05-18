@@ -5,11 +5,11 @@ source("https://raw.githubusercontent.com/ggrothendieck/gsubfn/master/R/list.R")
 neuralnet.load <- function(path){
   fc1_W  <<- matrix(scan(paste(path,'fc1_W',sep='/')), 400, 784, byrow=TRUE)
   fc1_b  <<- scan(paste(path,'fc1_b',sep='/'))
-  fc21_W <<- matrix(scan(paste(path,'fc21_W',sep='/')), 20, 400, byrow=TRUE)
+  fc21_W <<- matrix(scan(paste(path,'fc21_W',sep='/')), 15, 400, byrow=TRUE)
   fc21_b <<- scan(paste(path,'fc21_b',sep='/'))
-  fc22_W <<- matrix(scan(paste(path,'fc22_W',sep='/')), 20, 400, byrow=TRUE)
+  fc22_W <<- matrix(scan(paste(path,'fc22_W',sep='/')), 15, 400, byrow=TRUE)
   fc22_b <<- scan(paste(path,'fc22_b',sep='/'))
-  fc3_W  <<- matrix(scan(paste(path,'fc3_W',sep='/')), 400, 20, byrow=TRUE)
+  fc3_W  <<- matrix(scan(paste(path,'fc3_W',sep='/')), 400, 15, byrow=TRUE)
   fc3_b  <<- scan(paste(path,'fc3_b',sep='/'))
   fc4_W  <<- matrix(scan(paste(path,'fc4_W',sep='/')), 784, 400, byrow=TRUE)
   fc4_b  <<- scan(paste(path,'fc4_b',sep='/'))
@@ -49,8 +49,8 @@ reparametrize <- function(mean_, logvar){
 
 VDP.load <- function(path){
   weights_ <<- scan(paste(path, 'weights', sep='/'))
-  mean_    <<- matrix(scan(paste(path, 'means', sep='/')), 400, 20, byrow=TRUE)
-  var_     <<- matrix(scan(paste(path, 'covars', sep='/')), 400, 20, byrow=TRUE)
+  mean_    <<- matrix(scan(paste(path, 'means', sep='/')), 500, 15, byrow=TRUE)
+  var_     <<- matrix(scan(paste(path, 'covars', sep='/')), 500, 15, byrow=TRUE)
 }
 
 VDP.sample <- function(n){
