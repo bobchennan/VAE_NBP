@@ -91,7 +91,7 @@ You can find the mid-term presentation about hierarchical dirichlet process [her
 
  ![Figure 1](https://github.com/bobchennan/VAE_NBP/raw/master/vis2.png "Connection between latent space dimension and mutual information")
 
- It is quite clear that 20 is the best configuration which means either too small or too large latent space is not good.
+ It is quite clear that 15 is the best configuration which means either too small or too large latent space is not good.
 
  #### Relation between maximum number of components and mutual information
 
@@ -99,13 +99,13 @@ You can find the mid-term presentation about hierarchical dirichlet process [her
  In the [original paper](http://www.cs.columbia.edu/~blei/papers/BleiJordan2004.pdf) they truncated the variational distribution instead of using the whole stick-breaking representation.
 
  So one interesting question is that how the maximum number of components influence the result.
- I tried different values from 50 to 450 and the latent dimension is fixed to 20.
+ I tried different values from 50 to 700 and the latent dimension is fixed to 15.
 
  This is the result:
 
 ![Figure 2](https://github.com/bobchennan/VAE_NBP/raw/master/vis1.png "Connection between maximum number of components and mutual information")
 
-As you can see, when this number is larger than 300, there is not much improvement.
+As you can see, when this number is larger than 500, there is not much improvement.
 
  ### Sample analysis
  In order to sample from the model, the latent vector is sampled from the prior (from either non-informative prior or dirichlet process mixture model).
