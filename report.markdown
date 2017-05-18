@@ -30,10 +30,10 @@ You can find the mid-term presentation about hierarchical dirichlet process [her
  Compared to the classical Gaussian Mixture Models we don't have a pre-defined value for the number of components.
  For more details about dirichlet process and non-parametric bayesian stuff I found [this video seris](https://www.youtube.com/watch?v=kKZkNUvsJ4M) given by Prof. Tamara Broderick is very helpful for the beginner because of the vivid examples.
 
- ## Experiments
+## Experiments
  ------
 
- ### Corpus
+### Corpus
 
  What is used for experiments is [MNIST of handwritten digits](http://yann.lecun.com/exdb/mnist/).
  Following is some description about this corpus:
@@ -48,7 +48,7 @@ You can find the mid-term presentation about hierarchical dirichlet process [her
   * As the indefinite mixture model, how well is the clustering result? For example, how pure is each cluster? Does one cluster includes samples from multiple class?
   * As the auto-encoder model, how well is the reconstruction result? Further more, can we sample from this model?
 
- ### Experiment Details
+### Experiment Details
  Variational inference is used for dirichlet process.
  Compared to sampling method like Gibbs sampling variational inference is usually faster.
  For more details about variational inference implementation for dirichlet process please read [this page](http://scikit-learn.org/stable/modules/dp-derivation.html).
@@ -66,7 +66,8 @@ You can find the mid-term presentation about hierarchical dirichlet process [her
 
  All results are given on the test set.
 
- ### Clustering results analysis
+### Clustering results analysis
+
 
  In this part I am trying to figure out the "purity" of the clustering.
  For example, we think this clustering result is "pure":
@@ -83,13 +84,13 @@ You can find the mid-term presentation about hierarchical dirichlet process [her
  Some good alternatives include [normalized mutual information](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.normalized_mutual_info_score.html#sklearn.metrics.normalized_mutual_info_score) which is between 0 and 1.
  For this example the normalized mutual information is approximately 0.82, fairly good.
 
- #### Baseline Performance
+#### Baseline Performance
 
  For the baseline system, dirichlet process is directly used. The maximum number of components is set to 50 and generally it is very slow and hard to converge.
 
  The mutual information is around 1.13 when the maximum number of iterations is set to 1000 and number of initializations is set to 5.
 
- #### Relation between latent space dimension and mutual information
+#### Relation between latent space dimension and mutual information
 
  In this experiment the maximum number of dimension is fixed to 100.
 
@@ -99,7 +100,7 @@ You can find the mid-term presentation about hierarchical dirichlet process [her
 
  It is quite clear that 15 is the best configuration which means either too small or too large latent space is not good.
 
- #### Relation between maximum number of components and mutual information
+#### Relation between maximum number of components and mutual information
 
  One drawback of variational inference implementation for dirichlet process is that the maximal number of components need to be assigned manually for truncation.
  In the [original paper](http://www.cs.columbia.edu/~blei/papers/BleiJordan2004.pdf) they truncated the variational distribution instead of using the whole stick-breaking representation.
@@ -113,7 +114,7 @@ You can find the mid-term presentation about hierarchical dirichlet process [her
 
 As you can see, when this number is larger than 500, there is not much improvement.
 
- ### Sample analysis
+### Sample analysis
  In order to sample from the model, the latent vector is sampled from the prior (from either non-informative prior or dirichlet process mixture model).
  Then the decoder will transform the latent vector to the real image.
 
@@ -127,11 +128,11 @@ Samples from variational auto-encoder with non-informative prior:
 
 As you can see, samples from the NBP prior is much better than non-informative prior as expect. It is well known that variational auto-encoder sampling suffers blurry problem. Dirichlet process mixture model cannot fully solve this problem but the result is much better.
 
- ## Future Work
+## Future Work
  ------
  While I am working on this project I realized dirichlet process may be not a good choice in the mutual information perspective. It is well known that in the dirichlet process, richer mixture get richer. So it tends to have some large mixtures which contains samples from all classes. This is not good for both mutual information and sampling in reality.
 
  For alternatives, maybe the repulsive models are a good choice. Depends on the base measure, mixtures in my experiments are too closed to each other. That is the reason that repulsive models may be a good choice.
 
- ## code
+## code
  The implementation can be found in my [github repo](https://github.com/bobchennan/VAE_NBP).
