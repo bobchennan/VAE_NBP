@@ -83,6 +83,12 @@ You can find the mid-term presentation about hierarchical dirichlet process [her
  Some good alternatives include [normalized mutual information](http://scikit-learn.org/stable/modules/generated/sklearn.metrics.normalized_mutual_info_score.html#sklearn.metrics.normalized_mutual_info_score) which is between 0 and 1.
  For this example the normalized mutual information is approximately 0.82, fairly good.
 
+ #### Baseline Performance
+
+ For the baseline system, dirichlet process is directly used. The maximum number of components is set to 50 and generally it is very slow and hard to converge.
+
+ The mutual information is around 1.13 when the maximum number of iterations is set to 1000 and number of initializations is set to 5.
+
  #### Relation between latent space dimension and mutual information
 
  In this experiment the maximum number of dimension is fixed to 100.
